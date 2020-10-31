@@ -12,6 +12,7 @@ ingress:
       paths:
         fester:
           - "/fester"
+          - "/fester/*"
         cantaloupe:
           - "/"
   tls: []
