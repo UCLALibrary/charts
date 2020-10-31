@@ -13,10 +13,10 @@ version: 1.0.0
 # follow Semantic Versioning. They should reflect the version the application is using.
 appVersion: 0.1.0
 
-dependencies:
-    - name: cantaloupe
-      version: 1.0.0
-      repository: "http://localhost:8080"
-  #  - name: fester
-  #    version: 1.0.0
-  #    repository: file://../fester
+#dependencies:
+#    - name: cantaloupe
+#      version: 1.0.0
+#      repository: "http://localhost:8080"
+#    - name: fester
+#      version: 1.0.0
+#      repository: "http://localhost:8080"

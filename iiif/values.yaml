@@ -32,6 +32,10 @@ resources: {}
   #   memory: 128Mi
   #
 
-festersubchart:
+fester:
+  ingress:
+    enabled: false
+
+cantaloupe:
   ingress:
     enabled: false
