@@ -1,0 +1,6 @@
+dependencies:
+- name: cantaloupe
+  repository: http://localhost:8080
+  version: 1.0.0
+digest: sha256:135f9e8fb127988cb7394249d97f0306cf86ac49d0c2ccd6c3aee6696ee23752
+generated: "2020-10-30T15:20:25.612595-07:00"
