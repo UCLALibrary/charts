@@ -53,7 +53,7 @@ The following tables lists the configurable parameters of the Shoreline chart an
 | `shoreline.db_setup_command.name` | Database rake command to run on install/upgrade | `db:migrate` | `DATABASE_COMMAND` |
 | `shoreline.geoblacklightDownloadPath` | Directory where GeoBlacklight stores generated files for download | `db:migrate` | `DATABASE_COMMAND` |
 | `shoreline.provenance` | Specify the source of the object being ingested. e.g. "UC Santa Barbara" | `"UC Santa Barbara"` | `SHORELINE_PROVENANCE` |
-| `shoreline.theme` | Shoreline theme to apply to deployment | `""` | `SHORELINE_THEME` |
+| `shoreline.theme` | Shoreline theme to apply to deployment (valid options: `ucsb` or `ucsd`) | `""` | `SHORELINE_THEME`  |
 | `shoreline.sample_data` | Whether to ingest sample/fixture data during deployment | `nil` | N/A |
 | `shoreline.suppressTools` | Don't render the `Tools` pand on object view page | `false` | `SHORELINE_SUPPRESS_TOOLS` |
 | `shoreline.solr.collectionName` | Solr collection name to use for application | `collection1` | `SOLR_CORE_NAME` |
