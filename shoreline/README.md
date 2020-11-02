@@ -35,6 +35,7 @@ $ helm delete my-release
 ```
 
 The command removes all the Kubernetes components associated with the chart and deletes the release.
+Note: this command does not remove the PersistentVolumeClaims or PersistentVolumes.
 
 ## Parameters
 
@@ -92,5 +93,10 @@ See: https://github.com/kubernetes/charts/blob/master/stable/postgresql/README.m
 #### Solr
 
 See: https://github.com/helm/charts/blob/master/incubator/solr/values.yaml
+This Solr chart depends on Zookeeper
+
+#### Zookeeper
+
+See: https://github.com/helm/charts/blob/master/incubator/zookeeper/values.yaml
 
 [shoreline]:https://gitlab.com/surfliner/surfliner/-/tree/trunk/shoreline/discovery
