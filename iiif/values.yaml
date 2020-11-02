@@ -34,11 +34,11 @@ resources: {}
   #
 
 fester:
-  replicaCount: 3
+  replicaCount: 1
   ingress:
     enabled: false
 
 cantaloupe:
-  replicaCount: 3
+  replicaCount: 1
   ingress:
     enabled: false
