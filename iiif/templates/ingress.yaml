@@ -30,7 +30,7 @@ spec:
     - host: {{ .host | quote }}
       http:
         paths:
-          {{- if .Values.fester.enabled }}
+          {{- if $.Values.fester.enabled }}
           {{- range .paths.fester }}
           - path: {{ . }}
             backend:
@@ -38,7 +38,7 @@ spec:
               servicePort: {{ $.Values.fester.fester.port }}
           {{- end }}
           {{- end }}
-          {{- if .Values.cantaloupe.enabled }}
+          {{- if $.Values.cantaloupe.enabled }}
           {{- range .paths.cantaloupe }}
           - path: {{ . }}
             backend:
