@@ -39,8 +39,13 @@ resources: {}
   #   memory: 128Mi
   #
 
-cantaloupe:
+festerchart:
+  enabled: false
+
+cantaloupechart:
   enabled: true
+
+cantaloupe:
   resources:
     limits:
       cpu: 6000m
