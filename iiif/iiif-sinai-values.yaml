@@ -38,14 +38,11 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
   #
-
-festerchart:
+fester:
   enabled: false
 
-cantaloupechart:
-  enabled: true
-
 cantaloupe:
+  enabled: true
   resources:
     limits:
       cpu: 6000m
