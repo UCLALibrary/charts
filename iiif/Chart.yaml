@@ -11,12 +11,14 @@ version: 1.0.0
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application. Versions are not expected to
 # follow Semantic Versioning. They should reflect the version the application is using.
-appVersion: 0.1.0
+#appVersion: 0.1.0
 
-#dependencies:
-#    - name: cantaloupe
-#      version: 1.0.0
-#      repository: "http://localhost:8080"
-#    - name: fester
-#      version: 1.0.0
-#      repository: "http://localhost:8080"
+dependencies:
+    - name: cantaloupe
+      version: 1.0.0
+      repository: file://../cantaloupe
+      condition: cantaloupe.enabled
+    - name: fester
+      version: 1.0.0
+      repository: file://../fester
+      condition: fester.enabled
