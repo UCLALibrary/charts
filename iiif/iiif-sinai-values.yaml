@@ -39,6 +39,9 @@ resources: {}
   #   memory: 128Mi
   #
 
+fester:
+  enabled: false
+
 cantaloupe:
   enabled: true
   resources:
