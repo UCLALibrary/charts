@@ -47,7 +47,7 @@ cantaloupe:
     limits:
       cpu: 6000m
       memory: 12Gi
-  replicaCount: 2
+  replicaCount: 1
   ingress:
     enabled: false
   image:
