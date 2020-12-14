@@ -4,21 +4,27 @@
 
 ingress:
   enabled: true
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/whitelist-source-range: 164.67.40.211/32,104.58.175.18
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    #nginx.ingress.kubernetes.io/auth-tls-pass-certificate-to-upstream: "true"
   hosts:
-    - host: test.local
+    - host: test-iiif.library.ucla.edu
       paths:
         fester:
           - "/fester"
           - "/fester/*"
+          - "/*/manifest"
+          - "/collections/*"
+          - "/collections"
         cantaloupe:
           - "/"
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+  tls:
+    - secretName: test-iiif-tls
+      hosts:
+        - test-iiif.library.ucla.edu
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -34,11 +40,59 @@ resources: {}
   #
 
 fester:
-  replicaCount: 2
+  replicaCount: 1
   ingress:
     enabled: false
+  image:
+    tag: "0.13.0"
+  imagePullSecrets:
+    - name: services-dockerhub-creds
+  fester:
+    env:
+      IIIF_BASE_URL: "https://test-iiif.library.ucla.edu/iiif/2"
+      FESTER_URL: "https://test-iiif.library.ucla.edu"
+      FESTER_S3_REGION: "us-west-2"
+      FESTER_S3_BUCKET: "test-iiif-fester-source"
+    envSecrets:
+      FESTER_S3_ACCESS_KEY: "fester-secrets"
+      FESTER_S3_SECRET_KEY: "fester-secrets"
+      #service:
+      #type: NodePort
 
 cantaloupe:
-  replicaCount: 2
+  resources:
+    limits:
+      memory: 2Gi
+  replicaCount: 3
   ingress:
     enabled: false
+  image:
+    repository: "uclalibrary/cantaloupe-ucla"
+    tag: "4.1.7-1"
+  imagePullSecrets:
+    - name: services-dockerhub-creds
+  cantaloupe:
+    env:
+      CANTALOUPE_ENDPOINT_ADMIN_ENABLED: "true"
+      CANTALOUPE_CACHE_SERVER_DERIVATIVE_ENABLED: "true"
+      CANTALOUPE_CACHE_SERVER_DERIVATIVE: "S3Cache"
+      CANTALOUPE_CACHE_SERVER_DERIVATIVE_TTL_SECONDS: "0"
+      CANTALOUPE_CACHE_SERVER_PURGE_MISSING: "true"
+      CANTALOUPE_PROCESSOR_SELECTION_STRATEGY: "ManualSelectionStrategy"
+      CANTALOUPE_MANUAL_PROCESSOR_JP2: "KakaduNativeProcessor"
+      CANTALOUPE_S3CACHE_ENDPOINT: "s3.us-west-2.amazonaws.com"
+      CANTALOUPE_S3CACHE_BUCKET_NAME: "prod-sinai-cantaloupe-iiif-cache"
+      CANTALOUPE_S3SOURCE_ENDPOINT: "s3.us-west-2.amazonaws.com"
+      CANTALOUPE_S3SOURCE_BASICLOOKUPSTRATEGY_PATH_SUFFIX: ".jpx"
+      CANTALOUPE_S3SOURCE_BASICLOOKUPSTRATEGY_BUCKET_NAME: "prod-sinai-cantaloupe-iiif-source"
+      CANTALOUPE_SOURCE_STATIC: "S3Source"
+      CANTALOUPE_CACHE_SERVER_RESOLVE_FIRST: "true"
+      HEAP_SIZE: "12g"
+      FESTER_S3_REGION: "us-west-2"
+      FESTER_S3_BUCKET: "test-iiif-fester-source"
+    envSecrets:
+      CANTALOUPE_ENDPOINT_ADMIN_SECRET: "cantaloupe-secrets"
+      CANTALOUPE_S3CACHE_ACCESS_KEY_ID: "cantaloupe-secrets"
+      CANTALOUPE_S3CACHE_SECRET_KEY: "cantaloupe-secrets"
+      CANTALOUPE_S3SOURCE_ACCESS_KEY_ID: "cantaloupe-secrets"
+      CANTALOUPE_S3SOURCE_SECRET_KEY: "cantaloupe-secrets"
