@@ -1,9 +1,5 @@
 {{- if .Values.ingress.enabled -}}
-{{- $fullName := "test-iiif" -}}
-{{- $svcFesterName := "test-fester" -}}
-{{- $svcFesterPort := 8888 -}}
-{{- $svcCantaloupeName := "test-cantaloupe" -}}
-{{- $svcCantaloupePort := 8182 -}}
+{{- $fullName := include "iiif.fullname" . -}}
 {{- if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
 apiVersion: networking.k8s.io/v1beta1
 {{- else -}}
@@ -37,14 +33,14 @@ spec:
           {{- range .paths.fester }}
           - path: {{ . }}
             backend:
-              serviceName: {{ $svcFesterName }}
-              servicePort: {{ $svcFesterPort }}
+              serviceName: {{ $.Release.Name }}-fester
+              servicePort: {{ $.Values.fester.fester.port }}
           {{- end }}
           {{- range .paths.cantaloupe }}
           - path: {{ . }}
             backend:
-              serviceName: {{ $svcCantaloupeName }}
-              servicePort: {{ $svcCantaloupePort }}
+              serviceName: {{ $.Release.Name }}-cantaloupe
+              servicePort: {{ $.Values.cantaloupe.cantaloupe.port }}
           {{- end }}
     {{- end }}
   {{- end }}
