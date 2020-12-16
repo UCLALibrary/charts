@@ -44,7 +44,10 @@ fester:
   resources:
     limits:
       cpu: 500m
-      memory: 1Gi
+      memory: 2Gi
+    requests:
+      cpu: 100m
+      memory: 256Mi
   replicaCount: 1
   ingress:
     enabled: false
@@ -69,6 +72,9 @@ cantaloupe:
     limits:
       cpu: 1000m
       memory: 2Gi
+    requests:
+      cpu: 100m
+      memory: 256Mi
   replicaCount: 1
   ingress:
     enabled: false

@@ -6,10 +6,8 @@ ingress:
   enabled: true
   annotations:
     kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/whitelist-source-range: 164.67.40.211/32,104.58.175.18
     nginx.ingress.kubernetes.io/enable-cors: "true"
     nginx.ingress.kubernetes.io/use-regex: "true"
-    #nginx.ingress.kubernetes.io/auth-tls-pass-certificate-to-upstream: "true"
   hosts:
     - host: iiif.sinaimanuscripts.library.ucla.edu
       paths:
@@ -42,6 +40,9 @@ cantaloupe:
     limits:
       cpu: 6000m
       memory: 12Gi
+    requests:
+      cpu: 100m
+      memory: 256m
   replicaCount: 2
   ingress:
     enabled: false
