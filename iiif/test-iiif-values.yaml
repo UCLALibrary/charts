@@ -75,12 +75,12 @@ cantaloupe:
     requests:
       cpu: 100m
       memory: 256Mi
-  replicaCount: 1
+  replicaCount: 2
   ingress:
     enabled: false
   image:
     repository: "uclalibrary/cantaloupe-ucla"
-    tag: "4.1.7-1"
+    tag: "4.1.5-1"
   imagePullSecrets:
     - name: services-dockerhub-creds
   cantaloupe:
