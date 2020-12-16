@@ -80,7 +80,7 @@ cantaloupe:
     enabled: false
   image:
     repository: "uclalibrary/cantaloupe-ucla"
-    tag: "4.1.5-1"
+    tag: "4.1.7-1"
   imagePullSecrets:
     - name: services-dockerhub-creds
   cantaloupe:
