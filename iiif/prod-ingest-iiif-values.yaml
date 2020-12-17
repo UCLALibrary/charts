@@ -1,0 +1,47 @@
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+  hosts:
+    - host: ingest.iiif.library.ucla.edu
+      paths:
+        fester:
+          - "/"
+  tls:
+    - secretName: prod-ingest-iiif-tls
+      hosts:
+        - ingest.iiif.library.ucla.edu
+
+resources: {}
+
+fester:
+  enabled: true
+  resources:
+    limits:
+      cpu: 2000m
+      memory: 2Gi
+    requests:
+      cpu: 100m
+      memory: 256Mi
+  replicaCount: 1
+  ingress:
+    enabled: false
+  image:
+    repository: "uclalibrary/fester"
+    tag: "0.14.1"
+  imagePullSecrets:
+    - name: services-dockerhub-creds
+  fester:
+    env:
+      FESTER_URL: "https://ingest.iiif.library.ucla.edu"
+      IIIF_BASE_URL: "https://iiif.library.ucla.edu/iiif/2"
+      FESTER_S3_REGION: "us-west-2"
+    envSecrets:
+      FESTER_S3_BUCKET: "fester-secrets"
+      FESTER_S3_SECRET_KEY: "fester-secrets"
+      FESTER_S3_ACCESS_KEY: "fester-secrets"
+
+cantaloupe:
+  enabled: false
