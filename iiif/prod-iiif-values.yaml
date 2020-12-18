@@ -1,0 +1,92 @@
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+  hosts:
+    - host: iiif.library.ucla.edu
+      paths:
+        fester:
+          - "/fester"
+          - "/fester/*"
+          - "/*/manifest"
+          - "/collections/*"
+          - "/collections"
+        cantaloupe:
+          - "/"
+  tls:
+    - secretName: prod-iiif-tls
+      hosts:
+        - iiif.library.ucla.edu
+
+resources: {}
+
+fester:
+  enabled: true
+  resources:
+    limits:
+      cpu: 2000m
+      memory: 2Gi
+    requests:
+      cpu: 500m
+      memory: 256Mi
+  replicaCount: 1
+  ingress:
+    enabled: false
+  image:
+    repository: "uclalibrary/fester"
+    tag: "0.14.1"
+  imagePullSecrets:
+    - name: services-dockerhub-creds
+  fester:
+    env:
+      FESTER_URL: "https://iiif.library.ucla.edu"
+      IIIF_BASE_URL: "https://iiif.library.ucla.edu/iiif/2"
+      FESTER_S3_REGION: "us-west-2"
+      FESTERIZE_VERSION: "0.2.0"
+    envSecrets:
+      FESTER_S3_BUCKET: "fester-secrets"
+      FESTER_S3_SECRET_KEY: "fester-secrets"
+      FESTER_S3_ACCESS_KEY: "fester-secrets"
+
+cantaloupe:
+  enabled: true
+  resources:
+    limits:
+      cpu: 6000m
+      memory: 12Gi
+    requests:
+      cpu: 1000m
+      memory: 256Mi
+  replicaCount: 1
+  ingress:
+    enabled: false
+  image:
+    repository: "uclalibrary/cantaloupe-ucla"
+    tag: "4.1.7-1"
+  imagePullSecrets:
+    - name: services-dockerhub-creds
+  cantaloupe:
+    env:
+      CANTALOUPE_ENDPOINT_ADMIN_ENABLED: "true"
+      CANTALOUPE_CACHE_SERVER_DERIVATIVE_ENABLED: "true"
+      CANTALOUPE_CACHE_SERVER_DERIVATIVE: "S3Cache"
+      CANTALOUPE_CACHE_SERVER_DERIVATIVE_TTL_SECONDS: "0"
+      CANTALOUPE_CACHE_SERVER_PURGE_MISSING: "true"
+      CANTALOUPE_PROCESSOR_SELECTION_STRATEGY: "ManualSelectionStrategy"
+      CANTALOUPE_MANUAL_PROCESSOR_JP2: "KakaduNativeProcessor"
+      CANTALOUPE_S3CACHE_ENDPOINT: "s3.us-west-2.amazonaws.com"
+      CANTALOUPE_S3SOURCE_ENDPOINT: "s3.us-west-2.amazonaws.com"
+      CANTALOUPE_S3SOURCE_BASICLOOKUPSTRATEGY_PATH_SUFFIX: ".jpx"
+      CANTALOUPE_SOURCE_STATIC: "S3Source"
+      CANTALOUPE_CACHE_SERVER_RESOLVE_FIRST: "true"
+      HEAP_SIZE: "12g"
+    envSecrets:
+      CANTALOUPE_ENDPOINT_ADMIN_SECRET: "cantaloupe-secrets"
+      CANTALOUPE_S3CACHE_ACCESS_KEY_ID: "cantaloupe-secrets"
+      CANTALOUPE_S3CACHE_SECRET_KEY: "cantaloupe-secrets"
+      CANTALOUPE_S3SOURCE_ACCESS_KEY_ID: "cantaloupe-secrets"
+      CANTALOUPE_S3SOURCE_SECRET_KEY: "cantaloupe-secrets"
+      CANTALOUPE_S3SOURCE_BASICLOOKUPSTRATEGY_BUCKET_NAME: "cantaloupe-secrets"
+      CANTALOUPE_S3CACHE_BUCKET_NAME: "cantaloupe-secrets"
