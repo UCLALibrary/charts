@@ -11,6 +11,7 @@ ingress:
           - "/fester"
           - "/fester/*"
           - "/*/manifest"
+          - "/*/manifest/*"
           - "/collections/*"
           - "/collections"
         cantaloupe:
