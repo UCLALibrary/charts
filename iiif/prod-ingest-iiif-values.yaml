@@ -5,6 +5,8 @@ ingress:
     nginx.ingress.kubernetes.io/enable-cors: "true"
     nginx.ingress.kubernetes.io/use-regex: "true"
     kubernetes.io/tls-acme: "false"
+    nginx.ingress.kubernetes.io/auth-tls-verify-client: "on"
+    nginx.ingress.kubernetes.io/auth-tls-secret: "prod-ingest-iiif-tls"
   hosts:
     - host: ingest.iiif.library.ucla.edu
       paths:
