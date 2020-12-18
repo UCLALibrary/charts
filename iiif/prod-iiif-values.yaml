@@ -10,7 +10,7 @@ ingress:
         fester:
           - "/fester"
           - "/fester/*"
-          - "/.*\/manifest"
+          - "/.*/manifest"
           - "/collections/*"
           - "/collections"
         cantaloupe:
