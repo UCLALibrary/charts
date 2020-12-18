@@ -59,7 +59,7 @@ cantaloupe:
     requests:
       cpu: 1000m
       memory: 256Mi
-  replicaCount: 1
+  replicaCount: 2
   ingress:
     enabled: false
   image:
