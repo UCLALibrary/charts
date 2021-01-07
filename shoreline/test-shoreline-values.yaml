@@ -1,0 +1,137 @@
+# UCLALib values for shoreline.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: registry.gitlab.com/surfliner/surfliner/shoreline_discovery_app
+  name: shoreline_discovery_app
+  tag: stable
+  pullPolicy: Always
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: NodePort
+  port: 80
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+  hosts: ['test-shoreline.library.ucla.edu']
+  tls: []
+
+# Shoreline resources
+resources:
+  requests:
+    cpu: 256m
+    memory: 256Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+
+nodeSelector:
+  runtype: main
+
+shoreline:
+  access: Public
+  db_setup_command: "db:migrate"
+  geoblacklightDownloadPath: /data/tmp/cache/downloads
+  provenance: "UC Santa Barbara"
+  theme: "ucsb"
+  # whether to ingest fixture data during deployment
+  sample_data:
+  suppressTools: false
+  solr:
+    collectionName: collection1
+  email:
+    contact_email: shoreline@example.edu
+    delivery_method: letter_opener_web # or: smtp
+    # see: https://guides.rubyonrails.org/action_mailer_basics.html#action-mailer-configuration
+    # smtp_settings:
+    #   address: smtp.example.edu
+    #   port: 587
+    #   user_name: username
+    #   password: password
+    #   authentication: plain
+
+# Configuration for solr chart
+# see: https://github.com/helm/charts/blob/master/incubator/solr/values.yaml
+solr:
+  image:
+    repository: solr
+    tag: 8.6.3
+  replicaCount: 1
+  javaMem: "-Xms1g -Xmx1g"
+  resources:
+    requests:
+      cpu: 256m
+      memory: 512Mi
+    limits:
+      cpu: 500m
+      memory: 1Gi
+  # Configure for zookeeper chart
+  # see: https://github.com/helm/charts/blob/master/incubator/zookeeper/values.yaml
+  zookeeper:
+    replicaCount: 1
+    resources:
+      requests:
+        cpu: 128m
+        memory: 512Mi
+      limits:
+        cpu: 256m
+        memory: 1Gi
+
+# Configuration for postgresql chart
+# see: https://github.com/kubernetes/charts/blob/master/stable/postgresql/README.md
+postgresql:
+  nameOverride: database
+  image:
+    repository: bitnami/postgresql
+    tag: 12.4.0
+  enabled: true
+  postgresqlUsername: shoreline-discovery
+  postgresqlPassword: shorelinepass
+  postgresqlDatabase: shoreline-discovery
+  servicePort: 5432
+  master:
+    nodeSelector:
+      runtype: support
+  persistence:
+    size: 10Gi
+  resources:
+    requests:
+      cpu: 256m
+      memory: 512Mi
+    limits:
+      cpu: 500m
+      memory: 1Gi
+
+geoserver:
+  admin:
+    password: shorelinegeo
+  persistence:
+    enabled: true
+  ingress:
+    enabled: true
+    hosts: ['geoserver.local']
+    tls: []
+  initMem: 1G
+  maxMem: 1G
+  resources:
+    requests:
+      cpu: 256m
+      memory: 1Gi
+    limits:
+      cpu: 500m
+      memory: 2Gi
+  nodeSelector:
+    runtype: support
+
+
+tolerations: []
+
+affinity: {}
