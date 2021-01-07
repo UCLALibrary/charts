@@ -35,7 +35,6 @@ $ helm delete my-release
 ```
 
 The command removes all the Kubernetes components associated with the chart and deletes the release.
-Note: this command does not remove the PersistentVolumeClaims or PersistentVolumes.
 
 ## Parameters
 
@@ -49,11 +48,9 @@ The following tables lists the configurable parameters of the Shoreline chart an
 | `imagePullSecrets` | Array of pull secrets for the image | `[]` | N/A |
 | `nameOverride` | String to partially override shoreline.fullname template with a string (will prepend the release name) | `""` | N/A |
 | `fullnameOverride` | String to fully override email.fullname template | `""` | N/A |
-| `shoreline.access` | Specify the access level for the object being ingested: “Public” or “Restricted” | `Public` | `SHORELINE_ACCESS` |
 | `shoreline.db_setup_command.name` | Database rake command to run on install/upgrade | `db:migrate` | `DATABASE_COMMAND` |
 | `shoreline.geoblacklightDownloadPath` | Directory where GeoBlacklight stores generated files for download | `db:migrate` | `DATABASE_COMMAND` |
-| `shoreline.provenance` | Specify the source of the object being ingested. e.g. "UC Santa Barbara" | `"UC Santa Barbara"` | `SHORELINE_PROVENANCE` |
-| `shoreline.theme` | Shoreline theme to apply to deployment (valid options: `ucsb` or `ucsd`) | `""` | `SHORELINE_THEME`  |
+| `shoreline.theme` | Shoreline theme to apply to deployment | `""` | `SHORELINE_THEME` |
 | `shoreline.sample_data` | Whether to ingest sample/fixture data during deployment | `nil` | N/A |
 | `shoreline.suppressTools` | Don't render the `Tools` pand on object view page | `false` | `SHORELINE_SUPPRESS_TOOLS` |
 | `shoreline.solr.collectionName` | Solr collection name to use for application | `collection1` | `SOLR_CORE_NAME` |
@@ -93,10 +90,5 @@ See: https://github.com/kubernetes/charts/blob/master/stable/postgresql/README.m
 #### Solr
 
 See: https://github.com/helm/charts/blob/master/incubator/solr/values.yaml
-This Solr chart depends on Zookeeper
-
-#### Zookeeper
-
-See: https://github.com/helm/charts/blob/master/incubator/zookeeper/values.yaml
 
 [shoreline]:https://gitlab.com/surfliner/surfliner/-/tree/trunk/shoreline/discovery
