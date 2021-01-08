@@ -33,9 +33,6 @@ resources:
     cpu: 500m
     memory: 512Mi
 
-nodeSelector:
-  runtype: main
-
 shoreline:
   access: Public
   db_setup_command: "db:migrate"
@@ -48,35 +45,32 @@ shoreline:
   solr:
     collectionName: collection1
   email:
-    contact_email: shoreline@example.edu
+    contact_email: testshoreline@library.ucla.edu
     delivery_method: letter_opener_web # or: smtp
     # see: https://guides.rubyonrails.org/action_mailer_basics.html#action-mailer-configuration
-    # smtp_settings:
-    #   address: smtp.example.edu
-    #   port: 587
-    #   user_name: username
-    #   password: password
-    #   authentication: plain
+    smtp_settings:
+      address: smtp.ucla.edu
+      port: 25
 
 # Configuration for solr chart
 # see: https://github.com/helm/charts/blob/master/incubator/solr/values.yaml
 solr:
   image:
     repository: solr
-    tag: 8.6.3
-  replicaCount: 1
-  javaMem: "-Xms1g -Xmx1g"
+    tag: 8.7.0
+  javaMem: "-Xms2g -Xmx2g"
   resources:
     requests:
       cpu: 256m
       memory: 512Mi
     limits:
       cpu: 500m
-      memory: 1Gi
+      memory: 2Gi
   # Configure for zookeeper chart
   # see: https://github.com/helm/charts/blob/master/incubator/zookeeper/values.yaml
   zookeeper:
-    replicaCount: 1
+    env:
+      JVMFLAGS: "-Xms1g -Xmx1g"
     resources:
       requests:
         cpu: 128m
@@ -88,27 +82,12 @@ solr:
 # Configuration for postgresql chart
 # see: https://github.com/kubernetes/charts/blob/master/stable/postgresql/README.md
 postgresql:
+  enabled: false
   nameOverride: database
-  image:
-    repository: bitnami/postgresql
-    tag: 12.4.0
-  enabled: true
   postgresqlUsername: shoreline-discovery
   postgresqlPassword: shorelinepass
   postgresqlDatabase: shoreline-discovery
   servicePort: 5432
-  master:
-    nodeSelector:
-      runtype: support
-  persistence:
-    size: 10Gi
-  resources:
-    requests:
-      cpu: 256m
-      memory: 512Mi
-    limits:
-      cpu: 500m
-      memory: 1Gi
 
 geoserver:
   admin:
@@ -117,10 +96,11 @@ geoserver:
     enabled: true
   ingress:
     enabled: true
-    hosts: ['geoserver.local']
+    hosts: ['test-geoserver.library.ucla.edu']
     tls: []
-  initMem: 1G
-  maxMem: 1G
+  jvm:
+    initialMemory: 2G
+    maximumMemory: 2G
   resources:
     requests:
       cpu: 256m
@@ -128,9 +108,8 @@ geoserver:
     limits:
       cpu: 500m
       memory: 2Gi
-  nodeSelector:
-    runtype: support
 
+nodeSelector: {}
 
 tolerations: []
 
