@@ -41,7 +41,7 @@ fester:
       FESTER_URL: "https://ingest.iiif.library.ucla.edu"
       IIIF_BASE_URL: "https://iiif.library.ucla.edu/iiif/2"
       FESTER_S3_REGION: "us-west-2"
-      FESTERIZE_VERSION: "0.2.0"
+      FESTERIZE_VERSION: "0.3.0"
     envSecrets:
       FESTER_S3_BUCKET: "fester-secrets"
       FESTER_S3_SECRET_KEY: "fester-secrets"
