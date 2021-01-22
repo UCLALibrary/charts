@@ -1,4 +1,4 @@
-# UCLALib values for shoreline.
+# UCLALib values for test shoreline.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -55,35 +55,18 @@ shoreline:
 # Configuration for solr chart
 # see: https://github.com/helm/charts/blob/master/incubator/solr/values.yaml
 solr:
-  image:
-    repository: solr
-    tag: 8.7.0
-  javaMem: "-Xms2g -Xmx2g"
-  resources:
-    requests:
-      cpu: 256m
-      memory: 512Mi
-    limits:
-      cpu: 500m
-      memory: 2Gi
-  # Configure for zookeeper chart
-  # see: https://github.com/helm/charts/blob/master/incubator/zookeeper/values.yaml
-  zookeeper:
-    env:
-      JVMFLAGS: "-Xms1g -Xmx1g"
-    resources:
-      requests:
-        cpu: 128m
-        memory: 512Mi
-      limits:
-        cpu: 256m
-        memory: 1Gi
+  enabled: false
+  solrHostname: test-solr-shoreline.library.ucla.edu
+  solrPort: 8983
+  zookeeperHostname: test-solr-shoreline.library.ucla.edu
+  zookeeperPort: 8983
 
 # Configuration for postgresql chart
 # see: https://github.com/kubernetes/charts/blob/master/stable/postgresql/README.md
 postgresql:
   enabled: false
   nameOverride: database
+  postgresqlHostname: "t-d-postgresql01.library.ucla.edu"
   postgresqlUsername: shoreline-discovery
   postgresqlPassword: shorelinepass
   postgresqlDatabase: shoreline-discovery
