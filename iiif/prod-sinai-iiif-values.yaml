@@ -54,6 +54,7 @@ cantaloupe:
       CANTALOUPE_DELEGATE_SCRIPT_PATHNAME: "/usr/local/cantaloupe/delegates.rb"
       CANTALOUPE_SOURCE_DELEGATE: "true"
       DELEGATE_URL: "https://raw.githubusercontent.com/UCLALibrary/cantaloupe-delegate/master/lib/delegates.rb"
+      CANTALOUPE_ENDPOINT_API_ENABLED: "true"
       HEAP_SIZE: "12g"
     envSecrets:
       CANTALOUPE_ENDPOINT_ADMIN_SECRET: "cantaloupe-secrets"
@@ -65,3 +66,6 @@ cantaloupe:
       CANTALOUPE_S3CACHE_BUCKET_NAME: "cantaloupe-secrets"
       CIPHER_KEY: "cantaloupe-secrets"
       CIPHER_TEXT: "cantaloupe-secrets"
+      CANTALOUPE_ENDPOINT_API_USERNAME: "cantaloupe-secrets"
+      CANTALOUPE_ENDPOINT_API_SECRET: "cantaloupe-secrets"
+

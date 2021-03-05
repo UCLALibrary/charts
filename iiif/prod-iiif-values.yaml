@@ -81,6 +81,7 @@ cantaloupe:
       CANTALOUPE_S3SOURCE_BASICLOOKUPSTRATEGY_PATH_SUFFIX: ".jpx"
       CANTALOUPE_SOURCE_STATIC: "S3Source"
       CANTALOUPE_CACHE_SERVER_RESOLVE_FIRST: "true"
+      CANTALOUPE_ENDPOINT_API_ENABLED: "true"
       HEAP_SIZE: "12g"
     envSecrets:
       CANTALOUPE_ENDPOINT_ADMIN_SECRET: "cantaloupe-secrets"
@@ -90,3 +91,6 @@ cantaloupe:
       CANTALOUPE_S3SOURCE_SECRET_KEY: "cantaloupe-secrets"
       CANTALOUPE_S3SOURCE_BASICLOOKUPSTRATEGY_BUCKET_NAME: "cantaloupe-secrets"
       CANTALOUPE_S3CACHE_BUCKET_NAME: "cantaloupe-secrets"
+      CANTALOUPE_ENDPOINT_API_USERNAME: "cantaloupe-secrets"
+      CANTALOUPE_ENDPOINT_API_SECRET: "cantaloupe-secrets"
+
