@@ -55,7 +55,7 @@ cantaloupe:
   resources:
     limits:
       cpu: 6000m
-      memory: 12Gi
+      memory: 13Gi
     requests:
       cpu: 1000m
       memory: 256Mi
