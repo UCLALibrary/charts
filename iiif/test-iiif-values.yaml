@@ -44,6 +44,8 @@ fester:
       FESTER_URL: "https://test-iiif.library.ucla.edu"
       IIIF_BASE_URL: "https://test-iiif.library.ucla.edu/iiif/2"
       FESTER_S3_REGION: "us-west-2"
+      AV_DEFAULT_AUDIO_THUMBNAIL_URL: "https://prod-uclalibrary-resources.s3-us-west-2.amazonaws.com/audio_icon.svg"
+      AV_DEFAULT_VIDEO_THUMBNAIL_URL: "https://prod-uclalibrary-resources.s3-us-west-2.amazonaws.com/video_icon.svg"
     envSecrets:
       FESTER_S3_BUCKET: "fester-secrets"
       FESTER_S3_SECRET_KEY: "fester-secrets"
