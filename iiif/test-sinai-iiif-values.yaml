@@ -7,14 +7,14 @@ ingress:
     cert-manager.io/cluster-issuer: sectigo-acme-clusterissuer
     kubernetes.io/tls-acme: "true"
   hosts:
-    - host: test-iiif.sinaimanuscripts.library.ucla.edu
+    - host: test-iiif.sinaimanuscripts-dev.library.ucla.edu
       paths:
         cantaloupe:
           - "/"
   tls:
     - secretName: test-sinai-iiif-tls
       hosts:
-        - test-iiif.sinaimanuscripts.library.ucla.edu
+        - test-iiif.sinaimanuscripts-dev.library.ucla.edu
 
 resources: {}
 
