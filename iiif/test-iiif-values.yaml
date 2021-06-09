@@ -95,5 +95,3 @@ cantaloupe:
       CANTALOUPE_S3CACHE_BUCKET_NAME: "cantaloupe-secrets"
       CANTALOUPE_ENDPOINT_API_USERNAME: "cantaloupe-secrets"
       CANTALOUPE_ENDPOINT_API_SECRET: "cantaloupe-secrets"
-      CIPHER_KEY: "cantaloupe-secrets"
-      CIPHER_TEXT: "cantaloupe-secrets"
