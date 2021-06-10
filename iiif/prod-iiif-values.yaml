@@ -56,7 +56,7 @@ cantaloupe:
   enabled: true
   resources:
     limits:
-      cpu: 6000m
+      cpu: 4000m
       memory: 13Gi
     requests:
       cpu: 1000m
@@ -70,6 +70,8 @@ cantaloupe:
   imagePullSecrets:
     - name: services-dockerhub-creds
   cantaloupe:
+    jvm:
+      corecount: 4
     env:
       CANTALOUPE_ENDPOINT_ADMIN_ENABLED: "true"
       CANTALOUPE_CACHE_SERVER_DERIVATIVE_ENABLED: "true"
