@@ -85,3 +85,5 @@ cantaloupe:
   env:
     CANTALOUPE_ENDPOINT_ADMIN_ENABLED: "true"
     CANTALOUPE_ENDPOINT_ADMIN_SECRET: "admin"
+  jvm:
+    corecount: 1
