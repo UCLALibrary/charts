@@ -55,8 +55,8 @@ cantaloupe:
   enabled: true
   resources:
     limits:
-      cpu: 2000m
-      memory: 12Gi
+      cpu: 4000m
+      memory: 4Gi
     requests:
       cpu: 100m
       memory: 256Mi
@@ -69,6 +69,8 @@ cantaloupe:
   imagePullSecrets:
     - name: services-dockerhub-creds
   cantaloupe:
+    jvm:
+      corecount: 4
     env:
       CANTALOUPE_ENDPOINT_ADMIN_ENABLED: "true"
       CANTALOUPE_CACHE_SERVER_DERIVATIVE_ENABLED: "true"
@@ -83,7 +85,7 @@ cantaloupe:
       CANTALOUPE_SOURCE_STATIC: "S3Source"
       CANTALOUPE_CACHE_SERVER_RESOLVE_FIRST: "true"
       CANTALOUPE_ENDPOINT_API_ENABLED: "true"
-      HEAP_SIZE: "8g"
+      HEAP_SIZE: "4g"
       CANTALOUPE_MAX_PIXELS: "350000000"
     envSecrets:
       CANTALOUPE_ENDPOINT_ADMIN_SECRET: "cantaloupe-secrets"
