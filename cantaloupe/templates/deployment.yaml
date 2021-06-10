@@ -33,6 +33,12 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args:
+            - -c
+            - docker-entrypoint.sh && exec java -Dcantaloupe.config=$CONFIG_FILE -XX:ActiveProcessorCount={{ .Values.cantaloupe.jvm.corecount | default 1 }}
+              -Xmx$HEAP_SIZE -jar /usr/local/cantaloupe/cantaloupe-*.*ar
+          command:
+            - sh
           {{- if or .Values.cantaloupe.env .Values.cantaloupe.envSecrets }}
           env:
             {{- range $k, $v := .Values.cantaloupe.env }}
