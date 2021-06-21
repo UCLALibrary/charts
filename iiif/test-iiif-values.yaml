@@ -15,10 +15,21 @@ ingress:
           - "/collections"
         cantaloupe:
           - "/"
+    - host: iiif.test-iiif.library.ucla.edu
+      paths:
+        fester:
+          - "/fester"
+          - "/fester/*"
+          - "/.*/manifest"
+          - "/collections/*"
+          - "/collections"
+        cantaloupe:
+          - "/"
   tls:
     - secretName: test-iiif-tls
       hosts:
         - test-iiif.library.ucla.edu
+        - iiif.test-iiif.library.ucla.edu
 
 resources: {}
 
