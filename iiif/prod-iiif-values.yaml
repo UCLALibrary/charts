@@ -36,7 +36,7 @@ fester:
     enabled: false
   image:
     repository: "uclalibrary/fester"
-    tag: "0.17.0"
+    tag: "0.18.0"
   imagePullSecrets:
     - name: services-dockerhub-creds
   fester:
@@ -45,8 +45,8 @@ fester:
       IIIF_BASE_URL: "https://iiif.library.ucla.edu/iiif/2"
       FESTER_S3_REGION: "us-west-2"
       FESTERIZE_VERSION: "0.3.1"
-      AV_DEFAULT_AUDIO_THUMBNAIL_URL: "https://prod-uclalibrary-resources.s3-us-west-2.amazonaws.com/audio_icon.svg"
-      AV_DEFAULT_VIDEO_THUMBNAIL_URL: "https://prod-uclalibrary-resources.s3-us-west-2.amazonaws.com/video_icon.svg"
+      AV_DEFAULT_AUDIO_THUMBNAIL_URL: "https://static.library.ucla.edu/audio_icon.svg"
+      AV_DEFAULT_VIDEO_THUMBNAIL_URL: "https://static.library.ucla.edu/video_icon.svg"
     envSecrets:
       FESTER_S3_BUCKET: "fester-secrets"
       FESTER_S3_SECRET_KEY: "fester-secrets"
@@ -98,4 +98,3 @@ cantaloupe:
       CANTALOUPE_S3CACHE_BUCKET_NAME: "cantaloupe-secrets"
       CANTALOUPE_ENDPOINT_API_USERNAME: "cantaloupe-secrets"
       CANTALOUPE_ENDPOINT_API_SECRET: "cantaloupe-secrets"
-
