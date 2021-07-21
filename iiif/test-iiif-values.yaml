@@ -67,7 +67,7 @@ cantaloupe:
   resources:
     limits:
       cpu: 4000m
-      memory: 4Gi
+      memory: 5Gi
     requests:
       cpu: 100m
       memory: 256Mi
@@ -98,6 +98,8 @@ cantaloupe:
       CANTALOUPE_ENDPOINT_API_ENABLED: "true"
       HEAP_SIZE: "4g"
       CANTALOUPE_MAX_PIXELS: "350000000"
+      CANTALOUPE_S3SOURCE_CHUNKING_ENABLED: "false"
+      CANTALOUPE_S3SOURCE_CHUNKING_CACHE_ENABLED: "false"
     envSecrets:
       CANTALOUPE_ENDPOINT_ADMIN_SECRET: "cantaloupe-secrets"
       CANTALOUPE_S3CACHE_ACCESS_KEY_ID: "cantaloupe-secrets"
