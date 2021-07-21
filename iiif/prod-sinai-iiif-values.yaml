@@ -24,7 +24,7 @@ cantaloupe:
   resources:
     limits:
       cpu: 4000m
-      memory: 12Gi
+      memory: 13Gi
     requests:
       cpu: 100m
       memory: 256m
@@ -58,6 +58,8 @@ cantaloupe:
       DELEGATE_URL: "https://raw.githubusercontent.com/UCLALibrary/cantaloupe-delegate/master/lib/delegates.rb"
       CANTALOUPE_ENDPOINT_API_ENABLED: "true"
       HEAP_SIZE: "12g"
+      CANTALOUPE_S3SOURCE_CHUNKING_ENABLED: "false"
+      CANTALOUPE_S3SOURCE_CHUNKING_CACHE_ENABLED: "false"
     envSecrets:
       CANTALOUPE_ENDPOINT_ADMIN_SECRET: "cantaloupe-secrets"
       CANTALOUPE_S3CACHE_ACCESS_KEY_ID: "cantaloupe-secrets"
