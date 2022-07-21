@@ -54,6 +54,7 @@ fester:
     env:
       FESTER_URL: "https://test-iiif.library.ucla.edu"
       IIIF_BASE_URL: "https://test-iiif.library.ucla.edu/iiif/2"
+      FESTERIZE_VERSION: "0.3.1"
       FESTER_S3_REGION: "us-west-2"
       AV_DEFAULT_AUDIO_THUMBNAIL_URL: "https://static.library.ucla.edu/audio_icon.svg"
       AV_DEFAULT_VIDEO_THUMBNAIL_URL: "https://static.library.ucla.edu/video_icon.svg"
